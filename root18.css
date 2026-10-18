@@ -1,0 +1,229 @@
+
+/* ===== POCKETPILOT PRO — HACKATHON COLOUR UPGRADE ===== */
+
+:root {
+  --bg: #f0f3fa;
+  --surface: #ffffff;
+  --ink: #18243b;
+  --muted: #75839a;
+  --green: #147d70;
+  --deep: #101827;
+  --lime: #c6fa72;
+  --line: #dfe6f1;
+  --soft: #e5f7f2;
+  --red: #e34d68;
+  --amber: #d99435;
+  --shadow: 0 10px 35px rgba(24, 36, 59, .08);
+}
+
+/* Main page background */
+body {
+  background: linear-gradient(135deg, #f0f3fa 0%, #e9f5f3 55%, #f4efff 100%);
+}
+
+/* Welcome screen */
+.auth {
+  background: #ffffff;
+}
+
+.auth-hero {
+  background:
+    radial-gradient(ellipse at 15% 15%, #268f83, transparent 40%),
+    radial-gradient(ellipse at 90% 85%, #5545a8, transparent 40%),
+    linear-gradient(145deg, #142b43, #101827 75%);
+}
+
+/* Brand logo */
+.logo {
+  background: linear-gradient(135deg, #c6fa72, #a5f3c5);
+  color: #142b43;
+}
+
+/* Main navigation header */
+.topbar {
+  background: linear-gradient(115deg, #142b43, #147d70 70%, #194e63);
+  border-bottom-color: #315a69;
+}
+
+.sidebar {
+  background: #f8faff;
+  border-right-color: #dfe6f1;
+}
+
+.nav-btn.active,
+.nav-btn:hover {
+  background: linear-gradient(110deg, #e0f7ef, #e7f0ff);
+  color: #126c62;
+}
+
+/* Primary buttons */
+.btn-primary {
+  background: linear-gradient(120deg, #147d70, #2367a8);
+  color: #ffffff;
+}
+
+.btn-primary:hover {
+  background: linear-gradient(120deg, #10685e, #194e8a);
+}
+
+.btn-light {
+  background: #e5f7f2;
+  color: #126c62;
+}
+
+.btn-outline {
+  border-color: #d4e1ec;
+  color: #d8f7eb;
+}
+
+/* Budget and metric cards */
+.hero-budget {
+  background:
+    radial-gradient(circle at 100% 0%, #367b88 0%, transparent 48%),
+    linear-gradient(135deg, #142b43, #147d70);
+}
+
+.metric-icon,
+.tx-icon {
+  background: linear-gradient(135deg, #147d70, #3656a8);
+}
+
+/* AI Copilot — dark premium theme */
+.ai-card {
+  background:
+    radial-gradient(ellipse at 100% 0%, #304b83 0%, transparent 45%),
+    linear-gradient(135deg, #17243b, #101827 80%);
+  border-color: #344766;
+}
+
+.ai-symbol {
+  background: linear-gradient(135deg, #c6fa72, #8ce8dc);
+  color: #142b43;
+}
+
+/* AI action buttons */
+.ai-card .btn {
+  background: linear-gradient(110deg, #c6fa72, #8ce8dc) !important;
+  color: #142b43 !important;
+}
+
+/* Form fields */
+.field input,
+.field select,
+.field textarea {
+  background: #f8faff;
+  border-color: #dfe6f1;
+}
+
+.field input:focus,
+.field select:focus,
+.field textarea:focus {
+  border-color: #147d70;
+  outline-color: #d4f3e9;
+}
+
+/* Progress bars */
+.progress {
+  background: #e5eaf2;
+}
+
+.progress div {
+  background: linear-gradient(90deg, #147d70, #39b9a2);
+}
+
+.hero-budget .progress div {
+  background: linear-gradient(90deg, #c6fa72, #8ce8dc);
+}
+
+/* Cards and supporting panels */
+.card {
+  border-color: #dfe6f1;
+  box-shadow: 0 10px 35px rgba(24, 36, 59, .07);
+}
+
+.sidebar-tip {
+  background: linear-gradient(135deg, #e5f7f2, #edf0ff);
+  color: #285a55;
+}
+
+.insight-box {
+  background: linear-gradient(135deg, #e8f6f2, #eef2ff);
+}
+
+.sim-box {
+  background: #edf5ff;
+  border-color: #d7e7fa;
+}
+
+.sim-box.good {
+  background: #e5f7ef;
+  border-color: #c5ebd8;
+  color: #17634c;
+}
+
+.sim-box.bad {
+  background: #fff0f2;
+  border-color: #f6d6dd;
+  color: #a33444;
+}
+
+/* Badges */
+.badge {
+  background: #e5f7f2;
+  color: #126c62;
+}
+
+.badge.warn {
+  background: #fff2d9;
+  color: #956019;
+}
+
+.badge.danger {
+  background: #fff0f2;
+  color: #d43e5c;
+}
+
+/* Savings goals and recurring payments */
+.goal-item,
+.recurring-item {
+  background: linear-gradient(135deg, #ffffff, #f7f9ff);
+  border-color: #dfe6f1;
+}
+
+.goal-actions button {
+  background: #e5f7f2;
+  color: #126c62;
+}
+
+/* Transaction tabs */
+.segmented {
+  background: #edf1f7;
+}
+
+.segmented button.active {
+  background: #ffffff;
+  color: #147d70;
+}
+
+/* Mobile navigation */
+.mobile-nav {
+  background: rgba(255, 255, 255, .97);
+  border-top-color: #dfe6f1;
+}
+
+.mobile-nav button.active {
+  color: #147d70;
+}
+
+/* Notifications */
+.toast {
+  background: linear-gradient(120deg, #142b43, #147d70);
+  color: #ffffff;
+}
+
+/* Selection and keyboard focus */
+button:focus-visible,
+input:focus-visible,
+select:focus-visible {
+  outline-color: #64cdb8;
+}

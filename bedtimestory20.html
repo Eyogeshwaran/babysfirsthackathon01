@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pip's Bedtime Stories 🌙</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=DM+Serif+Display&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --cream: #fff8ec;
+  --berry: #a83d65;
+  --pink: #f4c9d8;
+  --purple: #b9a6dc;
+  --brown: #563b46;
+  --gold: #f4c96b;
+  --card: #fffdf7;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--cream);
+  color: var(--brown);
+  font-family: 'Fredoka', sans-serif;
+  transition: background .35s, color .35s;
+  overflow-x: hidden;
+}
+
+body.night {
+  --cream: #211e36;
+  --card: #302a49;
+  --brown: #fff1dc;
+  --pink: #704968;
+  --purple: #6c5a9b;
+  --berry: #f1a6c4;
+}
+
+button, select {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 20px 7%;
+  border-bottom: 2px dashed var(--pink);
+}
+
+.logo {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--berry);
+  cursor: pointer;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  flex-wrap: wrap;
+  font-size: .95rem;
+}
+
+.nav-links a:hover {
+  color: var(--berry);
+}
+
+.small-btn, .primary-btn, .secondary-btn {
+  border: 0;
+  border-radius: 999px;
+  padding: 11px 18px;
+  font-weight: 600;
+  transition: transform .2s, box-shadow .2s;
+}
+
+.small-btn, .secondary-btn {
+  background: var(--pink);
+  color: var(--brown);
+}
+
+.primary-btn {
+  background: var(--berry);
+  color: white;
+  box-shadow: 0 5px 0 rgba(86,59,70,.13);
+}
+
+button:hover {
+  transform: translateY(-2px);
+}
+
+button:focus-visible, a:focus-visible, select:focus-visible {
+  outline: 3px solid var(--gold);
+  outline-offset: 3px;
+}
+
+.hero {
+  text-align: center;
+  padding: 65px 20px 42px;
+  max-width: 850px;
+  margin: auto;
+}
+
+.eyebrow {
+  display: inline-block;
+  padding: 7px 15px;
+  background: var(--pink);
+  border-radius: 30px;
+  font-size: .85rem;
+  margin-bottom: 20px;
+}
+
+h1, h2, h3 {
+  font-family: 'DM Serif Display', serif;
+  font-weight: 400;
+}
+
+h1 {
+  font-size: clamp(2.7rem, 7vw, 5rem);
+  line-height: 1.08;
+  margin-bottom: 18px;
+}
+
+h1 span {
+  color: var(--berry);
+}
+
+.hero p {
+  font-size: 1.08rem;
+  line-height: 1.8;
+  max-width: 610px;
+  margin: auto;
+}
+
+.moon-scene {
+  margin: 30px auto 0;
+  position: relative;
+  height: 145px;
+  max-width: 450px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.moon {
+  font-size: 6rem;
+  animation: float 3s ease-in-out infinite;
+  filter: drop-shadow(0 0 18px #f4c96b66);
+}
+
+.floating-star {
+  position: absolute;
+  font-size: 1.5rem;
+  animation: twinkle 1.8s ease-in-out infinite alternate;
+}
+
+.star-a { top: 10px; left: 20%; }
+.star-b { top: 35px; right: 17%; animation-delay: .6s; }
+.star-c { bottom: 5px; left: 33%; animation-delay: .3s; }
+.star-d { bottom: 15px; right: 30%; animation-delay: .9s; }
+
+@keyframes float {
+  50% { transform: translateY(-9px) rotate(4deg); }
+}
+
+@keyframes twinkle {
+  from { opacity: .4; transform: scale(.8); }
+  to { opacity: 1; transform: scale(1.15); }
+}
+
+section {
+  padding: 35px 7%;
+}
+
+.section-heading {
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.section-heading h2 {
+  font-size: clamp(2rem, 4vw, 3rem);
+  margin-bottom: 8px;
+}
+
+.section-heading p {
+  opacity: .85;
+  line-height: 1.6;
+}
+
+.story-grid {
+  max-width: 1050px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.story-card {
+  background: var(--card);
+  border: 2px solid var(--pink);
+  border-radius: 25px;
+  padding: 25px 20px;
+  text-align: center;
+  box-shadow: 0 8px 0 rgba(86,59,70,.05);
+  transition: transform .2s, border-color .2s;
+}
+
+.story-card:hover {
+  transform: translateY(-5px) rotate(-.5deg);
+  border-color: var(--berry);
+}
+
+.story-icon {
+  font-size: 3.2rem;
+  margin-bottom: 13px;
+}
+
+.story-card h3 {
+  font-size: 1.45rem;
+  margin-bottom: 10px;
+}
+
+.story-card p {
+  font-size: .95rem;
+  line-height: 1.65;
+  margin-bottom: 18px;
+  min-height: 76px;
+}
+
+.story-card .primary-btn {
+  width: 100%;
+}
+
+.reader {
+  max-width: 850px;
+  margin: 25px auto 40px;
+  background: var(--card);
+  border: 2px solid var(--pink);
+  border-radius: 30px;
+  padding: clamp(20px, 5vw, 42px);
+  text-align: center;
+  box-shadow: 0 10px 0 rgba(86,59,70,.06);
+  scroll-margin-top: 25px;
+}
+
+.reader-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 25px;
+}
+
+.reader-top span {
+  background: var(--pink);
+  padding: 8px 13px;
+  border-radius: 20px;
+  font-size: .85rem;
+}
+
+.scene-art {
+  min-height: 180px;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(135deg, #f8dce6, #e7def9);
+  border-radius: 24px;
+  margin-bottom: 25px;
+  overflow: hidden;
+}
+
+.scene-art span {
+  font-size: clamp(4rem, 12vw, 6rem);
+  animation: float 3s ease-in-out infinite;
+}
+
+.reader h2 {
+  font-size: clamp(1.8rem, 5vw, 2.7rem);
+  margin-bottom: 17px;
+}
+
+.story-text {
+  max-width: 600px;
+  margin: auto;
+  font-size: 1.08rem;
+  line-height: 2;
+  min-height: 110px;
+  white-space: pre-line;
+}
+
+.progress-wrap {
+  height: 9px;
+  background: var(--pink);
+  border-radius: 20px;
+  margin: 28px 0 20px;
+  overflow: hidden;
+}
+
+.progress-bar {
+  height: 100%;
+  width: 0%;
+  background: var(--berry);
+  border-radius: inherit;
+  transition: width .3s;
+}
+
+.reader-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 18px;
+}
+
+.reader-controls button {
+  min-width: 125px;
+}
+
+.reader-controls button:disabled {
+  opacity: .4;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.story-end {
+  margin-top: 22px;
+  padding: 15px;
+  background: var(--pink);
+  border-radius: 18px;
+  line-height: 1.7;
+}
+
+.interactive-note {
+  max-width: 850px;
+  margin: 20px auto;
+  background: var(--card);
+  border: 2px dashed var(--purple);
+  border-radius: 24px;
+  padding: 25px;
+  text-align: center;
+}
+
+.interactive-note h3 {
+  font-size: 1.7rem;
+  margin-bottom: 10px;
+}
+
+.interactive-note p {
+  line-height: 1.7;
+  margin-bottom: 16px;
+}
+
+footer {
+  text-align: center;
+  padding: 35px 20px;
+  border-top: 2px dashed var(--pink);
+  line-height: 2;
+}
+
+footer a {
+  color: var(--berry);
+  font-weight: 600;
+}
+
+#toast {
+  position: fixed;
+  bottom: 22px;
+  left: 50%;
+  transform: translateX(-50%) translateY(120px);
+  background: var(--brown);
+  color: var(--cream);
+  padding: 13px 20px;
+  border-radius: 30px;
+  z-index: 10;
+  transition: transform .3s;
+  text-align: center;
+  width: max-content;
+  max-width: 90%;
+}
+
+#toast.show {
+  transform: translateX(-50%) translateY(0);
+}
+
+@media (max-width: 760px) {
+  nav {
+    flex-direction: column;
+  }
+
+  .nav-links {
+    justify-content: center;
+  }
+
+  .story-grid {
+    grid-template-columns: 1fr;
+    max-width: 450px;
+  }
+
+  .story-card p {
+    min-height: auto;
+  }
+
+  section {
+    padding: 28px 5%;
+  }
+
+  .reader-top {
+    justify-content: center;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: .01ms !important;
+  }
+}
+</style>
+</head>
+
+<body>
+<nav>
+  <a class="logo" id="pipLogo" href="index20.html">☾ Pip's Dream Studio</a>
+
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="nightlight.html">Nightlights</a>
+    <a href="lullaby.html">Lullaby Lab</a>
+    <button class="small-btn" id="themeBtn">🌙 Dream Mode</button>
+  </div>
+</nav>
+
+<header class="hero">
+  <span class="eyebrow">📖 The Midnight Storybook Club</span>
+  <h1>Once upon a <span>sleepy time...</span></h1>
+  <p>
+    Welcome to Pip's little story corner! Pick a story, settle into
+    your coziest blanket, and travel to a world where stars make wishes
+    and even the moon needs a bedtime hug.
+  </p>
+
+  <div class="moon-scene" aria-hidden="true">
+    <span class="floating-star star-a">✦</span>
+    <span class="floating-star star-b">✨</span>
+    <span class="moon">🌙</span>
+    <span class="floating-star star-c">⭐</span>
+    <span class="floating-star star-d">✧</span>
+  </div>
+</header>
+
+<section id="stories">
+  <div class="section-heading">
+    <h2>Choose your little adventure ✨</h2>
+    <p>Three tiny tales, one very sleepy skull baby.</p>
+  </div>
+
+  <div class="story-grid">
+    <article class="story-card">
+      <div class="story-icon">⭐</div>
+      <h3>The Star Who Got Lost</h3>
+      <p>A tiny star falls from the sky, and Pip helps it find its way home.</p>
+      <button class="primary-btn" onclick="startStory('star')">
+        Read this story →
+      </button>
+    </article>
+
+    <article class="story-card">
+      <div class="story-icon">☁️</div>
+      <h3>The Cloud's Big Hug</h3>
+      <p>A little cloud thinks it is too small to make anyone happy.</p>
+      <button class="primary-btn" onclick="startStory('cloud')">
+        Read this story →
+      </button>
+    </article>
+
+    <article class="story-card">
+      <div class="story-icon">🏮</div>
+      <h3>The Little Dream Lantern</h3>
+      <p>Pip carries a magical lantern through a forest full of sleepy dreams.</p>
+      <button class="primary-btn" onclick="startStory('lantern')">
+        Read this story →
+      </button>
+    </article>
+  </div>
+</section>
+
+<section id="readerSection">
+  <div class="reader" id="reader">
+    <div class="reader-top">
+      <span id="storyBadge">📚 Your storybook</span>
+      <span id="sceneCounter">Ready when you are!</span>
+    </div>
+
+    <div class="scene-art" id="sceneArt">
+      <span id="sceneEmoji">💀🌙</span>
+    </div>
+
+    <h2 id="sceneTitle">Pip is waiting for you!</h2>
+
+    <p class="story-text" id="storyText">
+      Choose one of the stories above to begin your bedtime adventure.
+      Every story has a little surprise at the end. ✨
+    </p>
+
+    <div class="progress-wrap" aria-label="Story progress">
+      <div class="progress-bar" id="progressBar"></div>
+    </div>
+
+    <div class="reader-controls">
+      <button class="secondary-btn" id="backBtn" onclick="changeScene(-1)" disabled>
+        ← Previous
+      </button>
+      <button class="primary-btn" id="nextBtn" onclick="changeScene(1)" disabled>
+        Next scene →
+      </button>
+    </div>
+
+    <div class="story-end" id="storyEnd" hidden>
+      🌙 The End! You did a wonderful job exploring with Pip.
+      Choose another story whenever you're ready.
+    </div>
+  </div>
+
+  <div class="interactive-note">
+    <h3>💌 A little bedtime wish</h3>
+    <p id="wishText">Pip is preparing a special wish just for you.</p>
+    <button class="secondary-btn" onclick="newWish()">Give me a bedtime wish ✨</button>
+  </div>
+</section>
+
+<footer>
+  <p>Made with sleepy stars and a little bit of magic 💗</p>
+  <p>Sweet dreams from Pip, Junior Dream Engineer.</p>
+  <p><a href="index20.html">← Back to Pip's Dream Studio</a></p>
+</footer>
+
+<div id="toast" role="status" aria-live="polite"></div>
+
+<script>
+const stories = {
+  star: {
+    title: "The Star Who Got Lost",
+    badge: "⭐ A sky-high adventure",
+    scenes: [
+      {
+        emoji: "🌌⭐",
+        title: "A tiny light in the garden",
+        text: "One quiet night, Pip was walking through the moonlit garden when a tiny golden star landed beside a flower.\n\n“Oh dear,” whispered the star. “I can't find my way back to the sky!”"
+      },
+      {
+        emoji: "💀✨",
+        title: "Pip has an idea",
+        text: "Pip gently placed the little star inside a glass jar with holes in the lid, so its light could shine safely.\n\n“Don't worry,” said Pip. “We'll find the tallest hill and ask the moon for help!”"
+      },
+      {
+        emoji: "🌙⛰️",
+        title: "The moon knows the way",
+        text: "Together they climbed the hill. The moon smiled down and sent a silver beam across the sky.\n\n“Follow my moonbeam,” it said. “Your family is waiting right there!”"
+      },
+      {
+        emoji: "⭐💖",
+        title: "Home among the stars",
+        text: "The tiny star floated upward and joined its sparkling family.\n\nBefore disappearing into the night, it winked at Pip and left one golden sparkle on Pip's hat.\n\nFrom that night on, Pip always had a little star to guide the way."
+      }
+    ]
+  },
+
+  cloud: {
+    title: "The Cloud's Big Hug",
+    badge: "☁️ A story about kindness",
+    scenes: [
+      {
+        emoji: "☁️🌤️",
+        title: "A cloud with a worry",
+        text: "High above the sleepy village lived a little cloud named Puff.\n\nPuff watched the big clouds make beautiful rainbows, but Puff was so small that it thought it couldn't do anything special."
+      },
+      {
+        emoji: "💀☁️",
+        title: "Pip looks up",
+        text: "Pip spotted Puff floating sadly over the garden.\n\n“Why are you hiding?” Pip asked.\n\n“I'm too little to make a difference,” sighed Puff."
+      },
+      {
+        emoji: "🌷💧",
+        title: "A tiny, wonderful thing",
+        text: "Just then, a little flower drooped in the warm sunshine.\n\nPuff gathered every bit of courage and sprinkled a few gentle raindrops onto the flower.\n\nThe flower lifted its head and bloomed!"
+      },
+      {
+        emoji: "☁️🌈",
+        title: "The biggest little hug",
+        text: "Puff realised that small things could make a big difference.\n\nIt floated around the village, giving thirsty flowers a drink and cooling sleepy animals.\n\nPip smiled. “See? You're just the right size to give the world a hug.”"
+      }
+    ]
+  },
+
+  lantern: {
+    title: "The Little Dream Lantern",
+    badge: "🏮 A magical night walk",
+    scenes: [
+      {
+        emoji: "🏮🌲",
+        title: "A light in the woods",
+        text: "One evening, Pip found a little lantern glowing beside a forest path.\n\nA tiny note was tied to its handle: “Please deliver this light to someone who needs a happy dream.”"
+      },
+      {
+        emoji: "🦊✨",
+        title: "A friend in the dark",
+        text: "Pip carried the lantern through the quiet woods and met a fox who was afraid of the shadows.\n\nThe lantern glowed a little brighter, painting the path with warm golden light."
+      },
+      {
+        emoji: "🐰🌙",
+        title: "A dream for everyone",
+        text: "Further along, Pip met a rabbit who couldn't fall asleep and a little owl who missed its family.\n\nEach time Pip shared the lantern's gentle glow, someone felt a little safer and happier."
+      },
+      {
+        emoji: "💖🏮",
+        title: "The light inside",
+        text: "At the end of the path, Pip understood the lantern's secret.\n\nIt grew brighter whenever someone felt cared for.\n\nPip carried it home, knowing that kindness was a kind of magic anyone could share."
+      }
+    ]
+  }
+};
+
+let activeStory = null;
+let sceneIndex = 0;
+let logoClicks = 0;
+let toastTimeout;
+
+const sceneEmoji = document.getElementById("sceneEmoji");
+const sceneTitle = document.getElementById("sceneTitle");
+const storyText = document.getElementById("storyText");
+const sceneCounter = document.getElementById("sceneCounter");
+const storyBadge = document.getElementById("storyBadge");
+const progressBar = document.getElementById("progressBar");
+const backBtn = document.getElementById("backBtn");
+const nextBtn = document.getElementById("nextBtn");
+const storyEnd = document.getElementById("storyEnd");
+
+function startStory(key) {
+  activeStory = stories[key];
+  sceneIndex = 0;
+  renderScene();
+
+  document.getElementById("readerSection").scrollIntoView({
+    behavior: "smooth",
+    block: "start"
+  });
+}
+
+function renderScene() {
+  if (!activeStory) return;
+
+  const scene = activeStory.scenes[sceneIndex];
+
+  sceneEmoji.textContent = scene.emoji;
+  sceneTitle.textContent = scene.title;
+  storyText.textContent = scene.text;
+  storyBadge.textContent = activeStory.badge;
+
+  sceneCounter.textContent =
+    "Scene " + (sceneIndex + 1) + " of " + activeStory.scenes.length;
+
+  progressBar.style.width =
+    ((sceneIndex + 1) / activeStory.scenes.length * 100) + "%";
+
+  backBtn.disabled = sceneIndex === 0;
+  nextBtn.disabled = false;
+  storyEnd.hidden = true;
+
+  if (sceneIndex === activeStory.scenes.length - 1) {
+    nextBtn.textContent = "Finish story ✨";
+  } else {
+    nextBtn.textContent = "Next scene →";
+  }
+}
+
+function changeScene(direction) {
+  if (!activeStory) return;
+
+  const nextIndex = sceneIndex + direction;
+
+  if (nextIndex < 0) return;
+
+  if (nextIndex >= activeStory.scenes.length) {
+    storyEnd.hidden = false;
+    nextBtn.disabled = true;
+    nextBtn.textContent = "Story complete 💗";
+    showToast("Sweet dreams, little dreamer! 🌙");
+    return;
+  }
+
+  sceneIndex = nextIndex;
+  renderScene();
+}
+
+const wishes = [
+  "May your dreams be as bright as a thousand tiny stars. ⭐",
+  "You did enough today. Rest your mind and be kind to yourself. 💗",
+  "May tomorrow bring you a little wonder and a lot of smiles. 🌷",
+  "Even the moon takes a rest. It's okay to slow down. 🌙",
+  "You deserve a cozy night and a peaceful morning. ☁️",
+  "Somewhere in the sky, a little star is cheering for you. ✨"
+];
+
+function newWish() {
+  const wishText = document.getElementById("wishText");
+  const current = wishText.textContent;
+  let wish;
+
+  do {
+    wish = wishes[Math.floor(Math.random() * wishes.length)];
+  } while (wish === current);
+
+  wishText.textContent = wish;
+}
+
+document.getElementById("themeBtn").addEventListener("click", function() {
+  document.body.classList.toggle("night");
+  const night = document.body.classList.contains("night");
+  this.textContent = night ? "☀️ Day Mode" : "🌙 Dream Mode";
+});
+
+function showToast(message) {
+  const toast = document.getElementById("toast");
+  toast.textContent = message;
+  toast.classList.add("show");
+
+  clearTimeout(toastTimeout);
+  toastTimeout = setTimeout(() => {
+    toast.classList.remove("show");
+  }, 2600);
+}
+
+// Hidden Easter egg: click Pip's logo five times.
+document.getElementById("pipLogo").addEventListener("click", function(event) {
+  logoClicks++;
+
+  if (logoClicks >= 5) {
+    event.preventDefault();
+    logoClicks = 0;
+    showToast("Psst! Pip says you're a star. Keep spreading kindness! ⭐💗");
+  }
+});
+</script>
+</body>
+</html>

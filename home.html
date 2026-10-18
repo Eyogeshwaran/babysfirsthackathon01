@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#fff8f1">
+  <title>Pip's Little Dream Studio</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <a class="logo" href="#home">♡ pip's dream studio</a>
+    <nav aria-label="Main navigation">
+      <a href="#about">Meet Pip</a>
+      <a href="#projects">Projects</a>
+      <a href="#story">My story</a>
+    </nav>
+    <button id="themeToggle" type="button"
+      aria-pressed="false">☾ Dream mode</button>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="hero-copy">
+        <p class="eyebrow">MIDNIGHT NURSERY · EST. DREAMTIME</p>
+        <h1>Goodnight, world!<br>I'm Pip <span>♡</span></h1>
+        <p>
+          Junior Dream Engineer, professional napper,
+          and builder of tiny magical dreams.
+        </p>
+        <a class="primary-button" href="#projects">
+          Explore my little world ✦
+        </a>
+      </div>
+
+      <button class="pip-button" id="pipButton"
+        aria-label="Visit Pip's secret surprise">
+        <img src="pip float.jpeg" alt="Pip floating on a cloud">
+        <span class="pip-hint">psst... click me ♡</span>
+      </button>
+      <p id="pipMessage" aria-live="polite">
+        Pip is dreaming up something lovely.
+      </p>
+    </section>
+
+    <section class="section" id="about">
+      <p class="eyebrow">A LITTLE INTRODUCTION</p>
+      <h2>Small baby. Big dreams.</h2>
+      <p>
+        I'm Pip, a curious, sleepy, slightly clumsy dream engineer.
+        I help the little creatures of the Midnight Nursery
+        drift off with warm lights, soft songs, and gentle stories.
+      </p>
+    </section>
+
+    <section class="section projects" id="projects">
+      <p class="eyebrow">MADE WITH A LITTLE MAGIC</p>
+      <h2>Things I've dreamed up</h2>
+
+      <div class="project-grid">
+        <article class="project-card">
+          <img src="music.jpeg"
+            alt="Pip's pastel music box">
+          <h3>01. The Lullaby Lab</h3>
+          <p>Little melodies for sleepy heads.</p>
+          <button id="lullabyButton" class="play-chime" type="button">
+            Play a tiny chime ♫
+          </button>
+          <p id="lullabyMessage" aria-live="polite"></p>
+        </article>
+
+        <article class="project-card">
+          <img src="night.jpeg"
+            alt="Pip's glowing dream lantern">
+          <h3>02. Nightlight Collection</h3>
+          <p>Warm little lights for the darkest corners.</p>
+          <button class="project-button" id="nightlightButton" type="button">
+             ✨ Explore the Nightlights
+            </button>
+            <p id="nightlightMessage" aria-live="polite"></p>
+        </article>
+
+        <article class="project-card">
+            <img src="dream.jpeg"alt="Pip the little dream engineer"class="project-image"/>
+          <h3>03. Dream Delivery Routes</h3>
+          <p>A tiny map for delivering dreams across the rooftops.</p>
+          <button id="routeButton" type="button">
+            Deliver a dream ↗️
+          </button>
+          <p id="routeMessage" aria-live="polite"></p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section story" id="story">
+      <p class="eyebrow">ONCE UPON A BEDTIME</p>
+      <h2>How my dreams began</h2>
+      <div class="story-scene">
+        <span>01 · THE LITTLE LIGHT</span>
+        <p>
+          One quiet night, Pip found a tiny light glowing
+          inside an old music box.
+        </p>
+      </div>
+      <div class="story-scene">
+        <span>02 · THE FIRST LULLABY</span>
+        <p>
+          A gentle tune drifted through the nursery,
+          helping the little creatures fall asleep.
+        </p>
+      </div>
+      <div class="story-scene">
+        <span>03 · A WORLD OF DREAMS</span>
+        <p>
+          From that night on, Pip built lights, songs,
+          and stories to share with the whole neighborhood.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    Made with sleepy love by Pip ♡
+    <p>Character artwork: official haX.baby Track 1 asset pack.</p>
+    <button id="soundToggle" type="button"
+      aria-pressed="false">Sound: Off</button>
+  </footer>
+
+  <div id="celebration" class="celebration"
+    role="status" aria-live="polite" hidden>
+    ✦ SECRET DREAM FOUND! ✦
+    <p>Pip saved a little star just for you. ♡</p>
+  </div>
+</body>
+</html>

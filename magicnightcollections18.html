@@ -1,0 +1,1374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#fff8f1">
+<title>Pip's Magical Nightlight Collection ✨</title>
+<meta name="description" content="Enter Pip's magical nursery and discover six enchanted nightlights, bedtime stories, and tiny dreams.">
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=DM+Serif+Display&display=swap');
+
+:root {
+  --cream: #fff8f1;
+  --berry: #a34063;
+  --brown: #5c4033;
+  --pink: #ffb8cf;
+  --ink: #28203e;
+  --night: #211b39;
+  --night2: #342448;
+  --gold: #ffd77c;
+  --glow: #ffd77c;
+  --muted: #88758b;
+  --card: #382b4b;
+  --line: rgba(163,64,99,.18);
+}
+
+* { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 82px;
+}
+
+body {
+  margin: 0;
+  color: var(--brown);
+  background: var(--cream);
+  font-family: 'Fredoka', sans-serif;
+  overflow-x: hidden;
+  transition: background .6s, color .6s;
+}
+
+button, a { font: inherit; }
+button { cursor: pointer; }
+a { color: inherit; text-decoration: none; }
+button:focus-visible, a:focus-visible {
+  outline: 3px solid #ffbf55;
+  outline-offset: 4px;
+}
+
+::selection { background: var(--pink); color: var(--ink); }
+
+.skip-link {
+  position: absolute;
+  top: -80px;
+  left: 12px;
+  z-index: 9999;
+  padding: 12px;
+  background: white;
+}
+.skip-link:focus { top: 12px; }
+
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  min-height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 12px clamp(18px, 5vw, 76px);
+  background: rgba(255,248,241,.94);
+  border-bottom: 1px solid var(--line);
+  backdrop-filter: blur(16px);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--berry);
+  font-size: 26px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+.brand-icon { animation: bob 3s ease-in-out infinite; }
+.brand small {
+  display: block;
+  color: var(--brown);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: .8px;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: clamp(12px, 2.3vw, 30px);
+  font-size: 14px;
+}
+.nav a { transition: color .2s; }
+.nav a:hover { color: var(--berry); }
+
+.header-actions { display: flex; gap: 8px; }
+.icon-button {
+  width: 39px;
+  height: 39px;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  color: var(--berry);
+  background: white;
+  font-size: 18px;
+}
+.icon-button:hover { transform: translateY(-2px); }
+
+.hero {
+  position: relative;
+  min-height: 570px;
+  display: grid;
+  grid-template-columns: 1.1fr .9fr;
+  align-items: center;
+  gap: 20px;
+  padding: 75px clamp(22px, 8vw, 120px);
+  overflow: hidden;
+  isolation: isolate;
+  color: white;
+  background:
+    radial-gradient(ellipse at 75% 75%, #795080 0, transparent 35%),
+    radial-gradient(ellipse at 25% 0%, #51365f 0, transparent 50%),
+    linear-gradient(135deg, #201932, #322043 65%, #4c3156);
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  opacity: .8;
+  background:
+    radial-gradient(ellipse at 15% 100%, #9c6b9d 0, transparent 25%),
+    radial-gradient(ellipse at 95% 100%, #8c629c 0, transparent 28%);
+}
+
+.hero-copy { max-width: 610px; position: relative; z-index: 2; }
+.eyebrow {
+  color: var(--pink);
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  font-size: 12px;
+  font-weight: 600;
+}
+.hero h1 {
+  margin: 16px 0;
+  font-family: 'DM Serif Display', Georgia, serif;
+  font-weight: 400;
+  font-size: clamp(42px, 6.5vw, 78px);
+  line-height: .99;
+  letter-spacing: -1.5px;
+}
+.hero h1 span { color: var(--pink); }
+.hero-copy > p {
+  max-width: 490px;
+  line-height: 1.9;
+  color: #f4e4f1;
+  font-size: 16px;
+}
+.hero-quote {
+  margin: 24px 0;
+  padding-left: 15px;
+  border-left: 3px solid var(--gold);
+  color: #ffe6b7;
+  font-family: 'DM Serif Display', Georgia, serif;
+  font-size: 19px;
+  line-height: 1.5;
+}
+.button-row { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 26px; }
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  min-height: 47px;
+  padding: 12px 22px;
+  border: 1px solid transparent;
+  border-radius: 30px;
+  background: var(--berry);
+  color: white;
+  font-weight: 600;
+  transition: transform .2s, box-shadow .2s, background .2s;
+}
+.btn:hover { transform: translateY(-3px); box-shadow: 0 8px 22px #0002; }
+.btn-light { background: var(--cream); color: var(--berry); }
+.btn-outline { background: transparent; border-color: #ffffff70; color: white; }
+
+.hero-art {
+  position: relative;
+  min-height: 340px;
+  display: grid;
+  place-items: center;
+}
+.orbit {
+  position: absolute;
+  width: min(100%, 360px);
+  aspect-ratio: 1;
+  border: 1px dashed #ffdbba55;
+  border-radius: 50%;
+  animation: spin 40s linear infinite;
+}
+.orbit::before, .orbit::after {
+  content: "✦";
+  position: absolute;
+  color: var(--gold);
+  font-size: 25px;
+}
+.orbit::before { top: 10%; left: 16%; }
+.orbit::after { right: 9%; bottom: 23%; }
+
+.moon {
+  position: absolute;
+  top: 4%;
+  right: 10%;
+  font-size: 64px;
+  color: var(--gold);
+  filter: drop-shadow(0 0 24px #ffcf76aa);
+  animation: bob 4s ease-in-out infinite;
+}
+.pip {
+  position: relative;
+  width: 235px;
+  height: 255px;
+  display: grid;
+  place-items: center;
+  animation: float 4s ease-in-out infinite;
+}
+.pip-cloud {
+  position: absolute;
+  bottom: 0;
+  width: 250px;
+  height: 85px;
+  border-radius: 50%;
+  background: #b6a0cf;
+  box-shadow: -44px 5px 0 -12px #d5c5e4,
+    44px 5px 0 -9px #c7b3dc, 0 18px 40px #100b2480;
+}
+.pip-face {
+  position: absolute;
+  top: 48px;
+  width: 168px;
+  height: 175px;
+  border-radius: 47% 47% 44% 44%;
+  background: linear-gradient(145deg, #fff0dc, #e9c9ca);
+  box-shadow: inset -10px -10px 0 #d5a9b5, 0 0 50px #ffc2d755;
+}
+.pip-eye {
+  position: absolute;
+  top: 70px;
+  width: 37px;
+  height: 45px;
+  border-radius: 50%;
+  background: #21182d;
+  box-shadow: inset 0 -3px 0 #483047;
+}
+.pip-eye.left { left: 32px; }
+.pip-eye.right { right: 32px; }
+.pip-eye::after {
+  content: "";
+  position: absolute;
+  top: 13px;
+  left: 10px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #ffcf77;
+  box-shadow: 0 0 12px #ffcf77;
+}
+.pip-smile {
+  position: absolute;
+  left: 70px;
+  top: 128px;
+  width: 24px;
+  height: 12px;
+  border-bottom: 3px solid #8f526b;
+  border-radius: 50%;
+  transform: rotate(-8deg);
+}
+.pip-cap {
+  position: absolute;
+  z-index: 3;
+  top: 22px;
+  left: 31px;
+  width: 146px;
+  height: 78px;
+  border-radius: 70% 70% 20% 20%;
+  transform: rotate(-12deg);
+  background: linear-gradient(145deg, #9566b6, #5c3a82);
+  border-bottom: 5px solid #ed9cbf;
+}
+.pip-cap::before {
+  content: "✦  ✧  ✦";
+  display: block;
+  margin-top: 24px;
+  color: #ffdb91;
+  text-align: center;
+  font-size: 18px;
+}
+.pip-bow {
+  position: absolute;
+  z-index: 4;
+  top: 65px;
+  right: 36px;
+  color: #ed83af;
+  font-size: 42px;
+  transform: rotate(-20deg);
+}
+.pip-lamp {
+  position: absolute;
+  z-index: 5;
+  right: -25px;
+  bottom: 43px;
+  width: 78px;
+  height: 100px;
+  display: grid;
+  place-items: center;
+  font-size: 56px;
+  filter: drop-shadow(0 0 18px #ffd36b);
+  animation: lampPulse 3s ease-in-out infinite;
+}
+.pip-lamp::before {
+  content: "";
+  position: absolute;
+  inset: 5px;
+  border-radius: 50%;
+  background: #ffd36b22;
+  box-shadow: 0 0 55px 22px #ffd36b45;
+  z-index: -1;
+}
+
+.stars {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+.star {
+  position: absolute;
+  color: #ffdf99;
+  animation: twinkle var(--duration, 3s) ease-in-out infinite;
+  animation-delay: var(--delay, 0s);
+}
+
+.section { padding: 82px clamp(20px, 7vw, 100px); }
+.section-heading { text-align: center; max-width: 680px; margin: 0 auto 38px; }
+.kicker {
+  color: var(--berry);
+  text-transform: uppercase;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 3px;
+}
+.section-heading h2 {
+  margin: 10px 0;
+  font-family: 'DM Serif Display', Georgia, serif;
+  font-size: clamp(34px, 4vw, 49px);
+  font-weight: 400;
+  color: var(--berry);
+}
+.section-heading p { line-height: 1.8; color: var(--muted); }
+
+.controls-panel {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 35px;
+  align-items: center;
+  padding: 28px clamp(20px, 6vw, 80px);
+  background: #f5e8e6;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+.controls-title { margin: 0 0 8px; color: var(--berry); font-size: 20px; }
+.palette { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 16px; }
+.swatch-wrap { text-align: center; font-size: 11px; }
+.swatch {
+  width: 36px;
+  height: 36px;
+  margin: 0 auto 7px;
+  border: 3px solid white;
+  border-radius: 50%;
+  box-shadow: 0 2px 7px #0001;
+}
+.swatch[aria-pressed="true"] { outline: 2px solid var(--berry); outline-offset: 3px; }
+.dream-control {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  padding-left: 20px;
+  border-left: 1px solid #d8bbc6;
+}
+.dream-control p { max-width: 190px; font-size: 13px; line-height: 1.7; }
+.big-toggle {
+  min-width: 160px;
+  min-height: 55px;
+  padding: 12px 18px;
+  border: 2px solid var(--berry);
+  border-radius: 35px;
+  background: transparent;
+  color: var(--berry);
+  font-weight: 600;
+}
+.big-toggle:hover { background: var(--berry); color: white; }
+
+.gallery {
+  background: var(--night);
+  color: white;
+  border-radius: 36px 36px 0 0;
+  padding: 76px clamp(18px, 5vw, 75px) 85px;
+}
+.gallery .section-heading h2 { color: #ffd5e3; }
+.gallery .section-heading p { color: #d0c0dc; }
+.gallery .kicker { color: var(--gold); }
+
+.lights-grid {
+  max-width: 1300px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 22px;
+}
+.light-card {
+  position: relative;
+  overflow: hidden;
+  padding: 18px;
+  border: 1px solid #bda1c65c;
+  border-radius: 22px;
+  background: linear-gradient(150deg, #493353, #30243e);
+  text-align: center;
+  transition: transform .25s, border-color .25s, box-shadow .4s;
+}
+.light-card:hover { transform: translateY(-6px); border-color: #ffd9a8; }
+.light-card.on {
+  border-color: var(--glow);
+  box-shadow: inset 0 0 32px color-mix(in srgb, var(--glow) 12%, transparent),
+    0 0 28px color-mix(in srgb, var(--glow) 15%, transparent);
+}
+.light-art {
+  position: relative;
+  min-height: 170px;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  border-radius: 16px;
+  background: radial-gradient(ellipse at center bottom, #9b729b70, transparent 68%);
+}
+.light-art::after {
+  content: "";
+  position: absolute;
+  bottom: 14px;
+  width: 120px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--glow);
+  filter: blur(18px);
+  opacity: 0;
+  transition: opacity .4s;
+}
+.light-card.on .light-art::after { opacity: .75; }
+.light-emoji {
+  position: relative;
+  z-index: 2;
+  font-size: 86px;
+  line-height: 1;
+  filter: grayscale(.2);
+  transition: transform .4s, filter .4s;
+}
+.light-card:hover .light-emoji { transform: translateY(-7px) rotate(-4deg); }
+.light-card.on .light-emoji {
+  filter: drop-shadow(0 0 22px var(--glow));
+  animation: lampPulse 2.8s ease-in-out infinite;
+}
+.light-card h3 { margin: 18px 0 6px; color: #ffe2ee; font-size: 20px; }
+.light-card p { min-height: 42px; margin: 0 0 17px; color: #d7c8df; font-size: 13px; line-height: 1.6; }
+.light-footer { display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; }
+.power-btn {
+  min-width: 105px;
+  padding: 10px 16px;
+  border: 1px solid #f3abc8;
+  border-radius: 25px;
+  background: #aa5678;
+  color: white;
+  font-weight: 600;
+}
+.power-btn[aria-pressed="false"] { background: transparent; border-color: #a28cae; }
+.card-color {
+  width: 38px;
+  height: 38px;
+  border: 2px solid white;
+  border-radius: 50%;
+  background: transparent;
+  padding: 3px;
+}
+.card-color input { width: 100%; height: 100%; padding: 0; border: 0; border-radius: 50%; cursor: pointer; }
+
+.story-section {
+  display: grid;
+  grid-template-columns: .8fr 1.2fr;
+  gap: clamp(28px, 6vw, 75px);
+  align-items: center;
+}
+.story-picture {
+  min-height: 310px;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  border-radius: 28px;
+  background:
+    radial-gradient(circle at 50% 35%, #ffd68c80, transparent 24%),
+    linear-gradient(145deg, #38274c, #825782);
+  box-shadow: 0 18px 40px #45234c20;
+}
+.story-picture .scene-emoji { font-size: 110px; filter: drop-shadow(0 0 25px #ffdc92aa); animation: float 4s ease-in-out infinite; }
+.story-text h2 {
+  margin: 10px 0 18px;
+  font-family: 'DM Serif Display', Georgia, serif;
+  color: var(--berry);
+  font-size: clamp(31px, 4vw, 45px);
+  font-weight: 400;
+}
+.story-text p { line-height: 1.9; color: var(--muted); }
+.story-progress { height: 5px; margin: 20px 0; border-radius: 10px; background: #eddde5; overflow: hidden; }
+.story-progress span { display: block; width: 33.333%; height: 100%; border-radius: inherit; background: var(--berry); transition: width .4s; }
+.story-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 12px; }
+.scene-count { color: var(--muted); font-size: 12px; }
+
+.note {
+  max-width: 750px;
+  margin: 0 auto;
+  padding: 24px;
+  border: 1px dashed #dba5b8;
+  border-radius: 20px;
+  background: #fff0f4;
+  text-align: center;
+}
+.note h3 { color: var(--berry); }
+.note p { line-height: 1.8; }
+
+.footer {
+  position: relative;
+  padding: 50px clamp(20px, 6vw, 80px) 24px;
+  overflow: hidden;
+  background: var(--night);
+  color: #e7d7ef;
+}
+.footer-top {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px;
+  align-items: start;
+}
+.footer h2 { color: #ffc4d8; font-family: 'DM Serif Display', Georgia, serif; font-weight: 400; }
+.footer p { max-width: 460px; color: #cbbbd7; line-height: 1.8; }
+.quick-controls { display: flex; flex-wrap: wrap; gap: 12px; }
+.quick-btn {
+  padding: 10px 14px;
+  border: 1px solid #80678e;
+  border-radius: 20px;
+  background: transparent;
+  color: white;
+}
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 40px;
+  padding-top: 20px;
+  border-top: 1px solid #ffffff22;
+  color: #b9a8c9;
+  font-size: 12px;
+}
+.footer a { color: #ffd2e1; }
+
+.toast {
+  position: fixed;
+  z-index: 300;
+  left: 50%;
+  bottom: 25px;
+  width: max-content;
+  max-width: calc(100vw - 32px);
+  padding: 14px 22px;
+  border: 1px solid #f1c2d4;
+  border-radius: 30px;
+  background: var(--cream);
+  color: var(--berry);
+  box-shadow: 0 12px 35px #140c2d35;
+  transform: translate(-50%, 140%);
+  opacity: 0;
+  transition: transform .4s, opacity .4s;
+  pointer-events: none;
+  text-align: center;
+}
+.toast.show { transform: translate(-50%, 0); opacity: 1; }
+
+#confetti {
+  position: fixed;
+  inset: 0;
+  z-index: 500;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+body.dream-mode {
+  --cream: #211a35;
+  --brown: #f3e3f4;
+  --berry: #ffb5d0;
+  --muted: #c8b4d7;
+  --line: #ffffff20;
+  background: #211a35;
+  color: #f3e3f4;
+}
+body.dream-mode .topbar { background: rgba(33,26,53,.94); }
+body.dream-mode .brand, body.dream-mode .brand small { color: #ffd0e0; }
+body.dream-mode .icon-button { background: #382747; color: #ffd0e0; }
+body.dream-mode .controls-panel { background: #30233f; border-color: #ffffff1c; }
+body.dream-mode .controls-title, body.dream-mode .section-heading h2,
+body.dream-mode .story-text h2 { color: #ffc4d8; }
+body.dream-mode .dream-control { border-color: #ffffff30; }
+body.dream-mode .big-toggle { border-color: #ffb5d0; color: #ffb5d0; }
+body.dream-mode .big-toggle:hover { background: #a34063; color: white; }
+body.dream-mode .note { background: #35243f; border-color: #b77a9b; }
+body.dream-mode .story-picture { box-shadow: 0 18px 40px #0003; }
+body.dream-mode .story-progress { background: #4b3858; }
+body.dream-mode .btn-light { background: #f6dbe7; }
+body.dream-mode .footer { border-top: 1px solid #ffffff15; }
+
+.sparkle {
+  position: fixed;
+  z-index: 400;
+  pointer-events: none;
+  color: #ffc96b;
+  animation: sparkleFly .8s ease-out forwards;
+}
+
+@keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-13px); } }
+@keyframes bob { 0%,100% { transform: translateY(0) rotate(-4deg); } 50% { transform: translateY(-8px) rotate(4deg); } }
+@keyframes spin { to { transform: rotate(360deg); } }
+@keyframes twinkle { 0%,100% { opacity: .25; transform: scale(.7); } 50% { opacity: 1; transform: scale(1.2); } }
+@keyframes lampPulse { 0%,100% { opacity: .9; } 50% { opacity: 1; } }
+@keyframes sparkleFly { from { opacity: 1; transform: translate(0,0) scale(1); } to { opacity: 0; transform: translate(var(--dx),var(--dy)) scale(.1) rotate(180deg); } }
+
+@media (min-width: 1500px) {
+  .hero { padding-left: max(120px, calc((100vw - 1300px)/2)); padding-right: max(120px, calc((100vw - 1300px)/2)); }
+}
+@media (max-width: 900px) {
+  .nav { gap: 12px; font-size: 12px; }
+  .hero { padding: 60px 35px; }
+  .lights-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .story-section { grid-template-columns: 1fr 1fr; }
+  .controls-panel { padding: 25px; }
+}
+@media (max-width: 650px) {
+  html { scroll-padding-top: 65px; }
+  .topbar { min-height: 62px; padding: 10px 15px; gap: 8px; }
+  .brand { font-size: 21px; }
+  .brand small { font-size: 9px; }
+  .nav { display: none; }
+  .header-actions { margin-left: auto; }
+  .icon-button { width: 35px; height: 35px; }
+  .hero { grid-template-columns: 1fr; padding: 54px 23px 25px; text-align: center; }
+  .hero-copy { margin: auto; }
+  .hero h1 { font-size: clamp(43px, 13vw, 66px); }
+  .hero-copy > p { margin-left: auto; margin-right: auto; }
+  .hero-quote { text-align: left; font-size: 17px; }
+  .button-row { justify-content: center; }
+  .hero-art { min-height: 310px; }
+  .moon { right: 10%; top: 0; }
+  .section { padding: 62px 20px; }
+  .controls-panel { grid-template-columns: 1fr; gap: 24px; padding: 28px 20px; }
+  .dream-control { border-left: 0; border-top: 1px solid #d8bbc6; padding: 22px 0 0; }
+  .gallery { padding: 60px 14px; border-radius: 25px 25px 0 0; }
+  .lights-grid { gap: 12px; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .light-card { padding: 10px; border-radius: 17px; }
+  .light-art { min-height: 125px; }
+  .light-emoji { font-size: 65px; }
+  .light-card h3 { font-size: 16px; }
+  .light-card p { font-size: 12px; min-height: 57px; }
+  .power-btn { min-width: 90px; padding: 9px 12px; font-size: 12px; }
+  .story-section { grid-template-columns: 1fr; }
+  .story-picture { min-height: 240px; }
+  .footer-top { grid-template-columns: 1fr; }
+}
+@media (max-width: 360px) {
+  .lights-grid { grid-template-columns: 1fr; }
+  .light-art { min-height: 170px; }
+  .light-emoji { font-size: 85px; }
+  .dream-control { flex-direction: column; text-align: center; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    scroll-behavior: auto !important;
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+  }
+}
+</style>
+</head>
+
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<canvas id="confetti" aria-hidden="true"></canvas>
+
+<header class="topbar">
+  <a class="brand" href="#home" aria-label="Pip's home">
+    <span class="brand-icon">✦</span>
+    <span>Pip <small>DREAM ENGINEER</small></span>
+  </a>
+
+  <nav class="nav" aria-label="Main navigation">
+    <a href="#home">Home</a>
+    <a href="#about">About Pip</a>
+    <a href="#collection">Collection</a>
+    <a href="#story">Story</a>
+    <a href="#footer">Dream Club</a>
+  </nav>
+
+  <div class="header-actions">
+    <button class="icon-button" id="soundToggle" aria-label="Turn sounds on" aria-pressed="false" title="Sound on/off">♫</button>
+    <button class="icon-button" id="themeToggle" aria-label="Turn dream mode on" aria-pressed="false" title="Day/night mode">☾</button>
+    <button class="icon-button" id="sparkleToggle" aria-label="Toggle sparkle cursor" aria-pressed="true" title="Sparkle cursor">✧</button>
+  </div>
+</header>
+
+<main id="main">
+<section class="hero" id="home">
+  <div class="stars" id="heroStars" aria-hidden="true"></div>
+
+  <div class="hero-copy">
+    <div class="eyebrow">✦ A little nursery of wonders ✦</div>
+    <h1>Pip's Magical <span>Nightlight</span> Collection</h1>
+    <p>
+      Hello, little dreamer! I'm Pip, the tiniest Dream Engineer at
+      Midnight Nursery. I turn stardust, moonbeams, and kind thoughts
+      into magical nightlights for creatures who need a little comfort.
+    </p>
+    <div class="hero-quote">“Even the tiniest light can make a big, brave dream.”</div>
+    <div class="button-row">
+      <a class="btn btn-light" href="#collection">✦ Explore the lights ↓</a>
+      <a class="btn btn-outline" href="#story">Read Pip's story ♡</a>
+    </div>
+  </div>
+
+  <div class="hero-art" id="about" aria-label="Illustration of Pip holding a magical lantern">
+    <div class="orbit"></div>
+    <div class="moon" aria-hidden="true">☾</div>
+    <div class="pip">
+      <div class="pip-cloud"></div>
+      <div class="pip-face">
+        <div class="pip-eye left"></div>
+        <div class="pip-eye right"></div>
+        <div class="pip-smile"></div>
+      </div>
+      <div class="pip-cap"></div>
+      <div class="pip-bow">🎀</div>
+      <div class="pip-lamp" aria-hidden="true">🏮</div>
+    </div>
+  </div>
+</section>
+
+<section class="controls-panel" aria-label="Nightlight settings">
+  <div>
+    <h2 class="controls-title">✦ Choose your glow ✦</h2>
+    <p>Pick a colour and watch the magic change.</p>
+    <div class="palette" id="palette">
+      <div class="swatch-wrap"><button class="swatch" style="background:#ffd77c" data-color="#ffd77c" aria-label="Warm gold glow" aria-pressed="true"></button>Warm gold</div>
+      <div class="swatch-wrap"><button class="swatch" style="background:#ff8fb1" data-color="#ff8fb1" aria-label="Pink glow" aria-pressed="false"></button>Pink</div>
+      <div class="swatch-wrap"><button class="swatch" style="background:#bf96ff" data-color="#bf96ff" aria-label="Purple glow" aria-pressed="false"></button>Purple</div>
+      <div class="swatch-wrap"><button class="swatch" style="background:#85c9ff" data-color="#85c9ff" aria-label="Blue glow" aria-pressed="false"></button>Blue</div>
+      <div class="swatch-wrap"><button class="swatch" style="background:#9fe3ae" data-color="#9fe3ae" aria-label="Green glow" aria-pressed="false"></button>Green</div>
+      <div class="swatch-wrap"><button class="swatch" style="background:#ffe46f" data-color="#ffe46f" aria-label="Sunny glow" aria-pressed="false"></button>Sunny</div>
+    </div>
+  </div>
+
+  <div class="dream-control">
+    <div>
+      <button class="big-toggle" id="dreamButton" aria-pressed="false">☾ Dream Mode</button>
+      <p id="dreamDescription">Switch to a dreamy night sky whenever you like.</p>
+    </div>
+    <div style="font-size:52px" aria-hidden="true">🌙</div>
+  </div>
+</section>
+
+<section class="gallery" id="collection">
+  <div class="section-heading">
+    <div class="kicker">Handmade with stardust</div>
+    <h2>Magical Nightlights</h2>
+    <p>Every little light has a purpose. Choose one, switch it on, and let your imagination glow.</p>
+  </div>
+
+  <div class="lights-grid" id="lightsGrid">
+    <article class="light-card" data-name="Star Friend" data-color="#ffd77c">
+      <div class="light-art"><span class="light-emoji" aria-hidden="true">⭐</span></div>
+      <h3>Star Friend</h3>
+      <p>A tiny star that keeps you company when the night feels big.</p>
+      <div class="light-footer">
+        <button class="power-btn" aria-pressed="false">☼ Turn on</button>
+        <button class="card-color" aria-label="Choose Star Friend glow colour"><input type="color" value="#ffd77c" aria-label="Star Friend light colour"></button>
+      </div>
+    </article>
+
+    <article class="light-card" data-name="Moon Dream" data-color="#bf96ff">
+      <div class="light-art"><span class="light-emoji" aria-hidden="true">🌙</span></div>
+      <h3>Moon Dream</h3>
+      <p>A sleepy moon that whispers peaceful dreams into the clouds.</p>
+      <div class="light-footer">
+        <button class="power-btn" aria-pressed="false">☼ Turn on</button>
+        <button class="card-color" aria-label="Choose Moon Dream glow colour"><input type="color" value="#bf96ff" aria-label="Moon Dream light colour"></button>
+      </div>
+    </article>
+
+    <article class="light-card" data-name="Cloud Buddy" data-color="#85c9ff">
+      <div class="light-art"><span class="light-emoji" aria-hidden="true">☁️</span></div>
+      <h3>Cloud Buddy</h3>
+      <p>A fluffy friend for little dreamers who need a calm moment.</p>
+      <div class="light-footer">
+        <button class="power-btn" aria-pressed="false">☼ Turn on</button>
+        <button class="card-color" aria-label="Choose Cloud Buddy glow colour"><input type="color" value="#85c9ff" aria-label="Cloud Buddy light colour"></button>
+      </div>
+    </article>
+
+    <article class="light-card" data-name="Mushroom Light" data-color="#ff8fb1">
+      <div class="light-art"><span class="light-emoji" aria-hidden="true">🍄</span></div>
+      <h3>Mushroom Light</h3>
+      <p>A gentle forest glow for tiny woodland creatures.</p>
+      <div class="light-footer">
+        <button class="power-btn" aria-pressed="false">☼ Turn on</button>
+        <button class="card-color" aria-label="Choose Mushroom Light glow colour"><input type="color" value="#ff8fb1" aria-label="Mushroom Light colour"></button>
+      </div>
+    </article>
+
+    <article class="light-card" data-name="Bunny Glow" data-color="#9fe3ae">
+      <div class="light-art"><span class="light-emoji" aria-hidden="true">🐰</span></div>
+      <h3>Bunny Glow</h3>
+      <p>A warm, gentle glow for sweet and brave little hearts.</p>
+      <div class="light-footer">
+        <button class="power-btn" aria-pressed="false">☼ Turn on</button>
+        <button class="card-color" aria-label="Choose Bunny Glow colour"><input type="color" value="#9fe3ae" aria-label="Bunny Glow colour"></button>
+      </div>
+    </article>
+
+    <article class="light-card" data-name="Crystal Dream" data-color="#bf96ff">
+      <div class="light-art"><span class="light-emoji" aria-hidden="true">💎</span></div>
+      <h3>Crystal Dream</h3>
+      <p>A magical crystal that lights the path to new adventures.</p>
+      <div class="light-footer">
+        <button class="power-btn" aria-pressed="false">☼ Turn on</button>
+        <button class="card-color" aria-label="Choose Crystal Dream colour"><input type="color" value="#bf96ff" aria-label="Crystal Dream colour"></button>
+      </div>
+    </article>
+  </div>
+</section>
+
+<section class="section" id="story">
+  <div class="story-section">
+    <div class="story-picture">
+      <div class="scene-emoji" id="storyEmoji" aria-hidden="true">🌌</div>
+    </div>
+
+    <div class="story-text">
+      <div class="kicker">A bedtime tale · Scene <span id="sceneNumber">1</span></div>
+      <h2 id="storyTitle">The Little Baby Who Collected Stars</h2>
+      <p id="storyParagraph">
+        Once upon a sleepy midnight, Pip floated through a sky full of
+        soft clouds. Pip noticed that some little creatures were afraid
+        of the dark. “What if I could make a tiny light just for them?”
+        Pip wondered.
+      </p>
+      <div class="story-progress" role="progressbar" aria-label="Story progress" aria-valuemin="1" aria-valuemax="3" aria-valuenow="1" id="storyProgress">
+        <span id="storyBar"></span>
+      </div>
+      <div class="story-actions">
+        <button class="btn" id="nextStory">Next scene →</button>
+        <span class="scene-count" id="sceneCount">1 of 3 magical moments</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="padding-top:0">
+  <div class="note">
+    <div style="font-size:34px" aria-hidden="true">💌</div>
+    <h3>A little note from Pip</h3>
+    <p id="pipNote">You don't have to be the biggest star in the sky. Just being your lovely little self is enough.</p>
+    <button class="btn" id="newNote">Give me a tiny kindness ♡</button>
+  </div>
+</section>
+</main>
+
+<footer class="footer" id="footer">
+  <div class="footer-top">
+    <div>
+      <div class="brand" style="color:#ffc4d8">✦ Pip's Dream Club</div>
+      <h2>Small lights. Big dreams.</h2>
+      <p>
+        From Midnight Nursery, with love. Every light is a reminder
+        that kindness can make even the darkest night feel softer.
+      </p>
+    </div>
+    <div>
+      <h2>Little magic controls</h2>
+      <div class="quick-controls">
+        <button class="quick-btn" id="footerSound">♫ Sound: Off</button>
+        <button class="quick-btn" id="footerTheme">☾ Dream Mode</button>
+        <button class="quick-btn" id="allLights">✦ Turn all lights on</button>
+      </div>
+      <p>Curious dreamers, look for the tiny star ✦ in the top-left logo. Click it five times to uncover a secret!</p>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>✦ Pip · Junior Dream Engineer · Midnight Nursery</span>
+    <span>Made with ♡ for little dreamers everywhere</span>
+  </div>
+</footer>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+(() => {
+  "use strict";
+
+  const $ = (selector, root = document) => root.querySelector(selector);
+  const $$ = (selector, root = document) => [...root.querySelectorAll(selector)];
+
+  const body = document.body;
+  const toast = $("#toast");
+  const themeToggle = $("#themeToggle");
+  const dreamButton = $("#dreamButton");
+  const soundToggle = $("#soundToggle");
+  const footerSound = $("#footerSound");
+  const footerTheme = $("#footerTheme");
+  const allLightsButton = $("#allLights");
+
+  let dreamMode = false;
+  let soundEnabled = false;
+  let sparkleEnabled = true;
+  let secretClicks = 0;
+  let toastTimer;
+  let audioContext = null;
+  let storyIndex = 0;
+  let allLightsOn = false;
+
+  // -----------------------------
+  // Accessible notifications
+  // -----------------------------
+  function showToast(message) {
+    toast.textContent = message;
+    toast.classList.add("show");
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => toast.classList.remove("show"), 3000);
+  }
+
+  // -----------------------------
+  // Decorative, randomised stars
+  // -----------------------------
+  const heroStars = $("#heroStars");
+  const starSymbols = ["✦", "✧", "·", "⋆", "✶"];
+
+  for (let i = 0; i < 48; i++) {
+    const star = document.createElement("span");
+    star.className = "star";
+    star.textContent = starSymbols[Math.floor(Math.random() * starSymbols.length)];
+    star.style.left = Math.random() * 100 + "%";
+    star.style.top = Math.random() * 100 + "%";
+    star.style.setProperty("--duration", (2 + Math.random() * 4) + "s");
+    star.style.setProperty("--delay", (-Math.random() * 5) + "s");
+    star.style.fontSize = (8 + Math.random() * 15) + "px";
+    heroStars.appendChild(star);
+  }
+
+  // -----------------------------
+  // Day / night dream mode
+  // -----------------------------
+  function setDreamMode(enabled) {
+    dreamMode = enabled;
+    body.classList.toggle("dream-mode", enabled);
+    themeToggle.setAttribute("aria-pressed", String(enabled));
+    dreamButton.setAttribute("aria-pressed", String(enabled));
+    themeToggle.setAttribute("aria-label", enabled ? "Turn dream mode off" : "Turn dream mode on");
+    themeToggle.textContent = enabled ? "☀" : "☾";
+    dreamButton.textContent = enabled ? "☀ Day Mode" : "☾ Dream Mode";
+    $("#dreamDescription").textContent = enabled
+      ? "The nursery is glowing beneath a dreamy midnight sky."
+      : "Switch to a dreamy night sky whenever you like.";
+    footerTheme.textContent = enabled ? "☀ Day Mode" : "☾ Dream Mode";
+    playChime(enabled ? 523 : 392);
+  }
+
+  themeToggle.addEventListener("click", () => setDreamMode(!dreamMode));
+  dreamButton.addEventListener("click", () => setDreamMode(!dreamMode));
+  footerTheme.addEventListener("click", () => setDreamMode(!dreamMode));
+
+  // -----------------------------
+  // Web Audio API chimes
+  // Audio starts only after the visitor enables it.
+  // -----------------------------
+  async function enableSound() {
+    try {
+      const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+      if (!AudioContextClass) {
+        showToast("This browser does not support audio chimes.");
+        return;
+      }
+      if (!audioContext) audioContext = new AudioContextClass();
+      if (audioContext.state === "suspended") await audioContext.resume();
+      soundEnabled = true;
+      updateSoundControls();
+      playChime(660);
+      showToast("♫ Tiny dream chimes are on!");
+    } catch (error) {
+      soundEnabled = false;
+      updateSoundControls();
+      showToast("Audio couldn't start. Please try again.");
+    }
+  }
+
+  function updateSoundControls() {
+    soundToggle.setAttribute("aria-pressed", String(soundEnabled));
+    soundToggle.setAttribute("aria-label", soundEnabled ? "Turn sounds off" : "Turn sounds on");
+    soundToggle.textContent = soundEnabled ? "♫" : "♩";
+    footerSound.textContent = soundEnabled ? "♫ Sound: On" : "♫ Sound: Off";
+  }
+
+  function playChime(frequency = 523) {
+    if (!soundEnabled || !audioContext || audioContext.state !== "running") return;
+    try {
+      const oscillator = audioContext.createOscillator();
+      const gain = audioContext.createGain();
+      oscillator.type = "sine";
+      oscillator.frequency.setValueAtTime(frequency, audioContext.currentTime);
+      oscillator.frequency.exponentialRampToValueAtTime(
+        Math.max(100, frequency * 0.72), audioContext.currentTime + 0.22
+      );
+      gain.gain.setValueAtTime(0.0001, audioContext.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.08, audioContext.currentTime + 0.025);
+      gain.gain.exponentialRampToValueAtTime(0.0001, audioContext.currentTime + 0.4);
+      oscillator.connect(gain);
+      gain.connect(audioContext.destination);
+      oscillator.start();
+      oscillator.stop(audioContext.currentTime + 0.42);
+      oscillator.onended = () => {
+        oscillator.disconnect();
+        gain.disconnect();
+      };
+    } catch (error) {
+      // Audio is an enhancement; the site remains functional without it.
+    }
+  }
+
+  soundToggle.addEventListener("click", () => {
+    if (soundEnabled) {
+      soundEnabled = false;
+      updateSoundControls();
+      showToast("Sound is off. Enjoy the quiet magic.");
+    } else {
+      enableSound();
+    }
+  });
+
+  footerSound.addEventListener("click", () => {
+    if (soundEnabled) {
+      soundEnabled = false;
+      updateSoundControls();
+      showToast("Sound is off.");
+    } else {
+      enableSound();
+    }
+  });
+
+  // -----------------------------
+  // Glow palette
+  // -----------------------------
+  const paletteButtons = $$("#palette .swatch");
+
+  function applyGlow(color) {
+    document.documentElement.style.setProperty("--glow", color);
+    paletteButtons.forEach(button => {
+      button.setAttribute("aria-pressed", String(button.dataset.color === color));
+    });
+    $$(".light-card").forEach(card => {
+      card.style.setProperty("--glow", color);
+      const picker = $('input[type="color"]', card);
+      picker.value = color;
+      card.dataset.color = color;
+    });
+    playChime(587);
+  }
+
+  paletteButtons.forEach(button => {
+    button.addEventListener("click", () => applyGlow(button.dataset.color));
+  });
+
+  // -----------------------------
+  // Nightlight power and custom colours
+  // -----------------------------
+  $$(".light-card").forEach((card, index) => {
+    const powerButton = $(".power-btn", card);
+    const colorInput = $('input[type="color"]', card);
+    const colorButton = $(".card-color", card);
+
+    card.style.setProperty("--glow", card.dataset.color);
+
+    function setLight(on) {
+      card.classList.toggle("on", on);
+      powerButton.setAttribute("aria-pressed", String(on));
+      powerButton.textContent = on ? "☼ Turn off" : "☼ Turn on";
+      powerButton.setAttribute("aria-label", `${on ? "Turn off" : "Turn on"} ${card.dataset.name}`);
+      if (on) playChime(390 + index * 65);
+    }
+
+    powerButton.addEventListener("click", () => {
+      const turningOn = !card.classList.contains("on");
+      setLight(turningOn);
+      showToast(turningOn
+        ? `${card.dataset.name} is glowing. Sweet dreams! ✨`
+        : `${card.dataset.name} is resting. 🌙`);
+    });
+
+    colorInput.addEventListener("input", () => {
+      card.dataset.color = colorInput.value;
+      card.style.setProperty("--glow", colorInput.value);
+      if (card.classList.contains("on")) playChime(550);
+    });
+
+    colorButton.addEventListener("click", () => {
+      // Native colour picker opens from its own input.
+    });
+  });
+
+  allLightsButton.addEventListener("click", () => {
+    allLightsOn = !allLightsOn;
+    $$(".light-card").forEach(card => {
+      const button = $(".power-btn", card);
+      const on = allLightsOn;
+      card.classList.toggle("on", on);
+      button.setAttribute("aria-pressed", String(on));
+      button.textContent = on ? "☼ Turn off" : "☼ Turn on";
+      button.setAttribute("aria-label", `${on ? "Turn off" : "Turn on"} ${card.dataset.name}`);
+    });
+    allLightsButton.textContent = allLightsOn ? "☾ Turn all lights off" : "✦ Turn all lights on";
+    showToast(allLightsOn ? "The whole nursery is glowing! ✨" : "The nursery is ready for a quiet rest. 🌙");
+    playChime(allLightsOn ? 740 : 330);
+  });
+
+  // -----------------------------
+  // Three-scene interactive story
+  // -----------------------------
+  const scenes = [
+    {
+      title: "The Little Baby Who Collected Stars",
+      emoji: "🌌",
+      text: "Once upon a sleepy midnight, Pip floated through a sky full of soft clouds. Pip noticed that some little creatures were afraid of the dark. “What if I could make a tiny light just for them?” Pip wondered."
+    },
+    {
+      title: "The Workshop of Tiny Wonders",
+      emoji: "🏮",
+      text: "Pip visited the Midnight Nursery workshop. A moonbeam became a crescent lamp, a kind thought became a glowing cloud, and a fallen star became a little bedside friend. Every lamp carried a different feeling: courage, comfort, hope, or joy."
+    },
+    {
+      title: "A Thousand Little Dreams",
+      emoji: "💖",
+      text: "That night, Pip delivered each light to a sleepy friend. The rabbit felt brave, the cloud felt calm, and the tiny forest creatures drifted into happy dreams. Pip smiled beneath the starry cap. The smallest light had made the biggest difference."
+    }
+  ];
+
+  function renderStory() {
+    const scene = scenes[storyIndex];
+    $("#storyTitle").textContent = scene.title;
+    $("#storyParagraph").textContent = scene.text;
+    $("#storyEmoji").textContent = scene.emoji;
+    $("#sceneNumber").textContent = storyIndex + 1;
+    $("#sceneCount").textContent = `${storyIndex + 1} of ${scenes.length} magical moments`;
+    $("#storyBar").style.width = ((storyIndex + 1) / scenes.length * 100) + "%";
+    $("#storyProgress").setAttribute("aria-valuenow", String(storyIndex + 1));
+    $("#nextStory").textContent = storyIndex === scenes.length - 1 ? "↻ Read again" : "Next scene →";
+  }
+
+  $("#nextStory").addEventListener("click", () => {
+    storyIndex = (storyIndex + 1) % scenes.length;
+    renderStory();
+    playChime(440 + storyIndex * 100);
+  });
+
+  // -----------------------------
+  // Kindness messages
+  // -----------------------------
+  const notes = [
+    "You don't have to be the biggest star in the sky. Just being your lovely little self is enough.",
+    "It's okay to grow slowly. Even the moon takes its time becoming full.",
+    "A small act of kindness can brighten someone's entire night.",
+    "Bravery doesn't mean never being afraid. Sometimes it means taking one tiny step.",
+    "Rest is part of every wonderful adventure. You deserve a peaceful moment, too.",
+    "Your imagination can turn an ordinary little moment into something magical."
+  ];
+  let noteIndex = 0;
+
+  $("#newNote").addEventListener("click", () => {
+    noteIndex = (noteIndex + 1) % notes.length;
+    $("#pipNote").textContent = notes[noteIndex];
+    playChime(500 + noteIndex * 35);
+  });
+
+  // -----------------------------
+  // Sparkle cursor trail
+  // -----------------------------
+  const sparkleToggle = $("#sparkleToggle");
+
+  sparkleToggle.addEventListener("click", () => {
+    sparkleEnabled = !sparkleEnabled;
+    sparkleToggle.setAttribute("aria-pressed", String(sparkleEnabled));
+    sparkleToggle.textContent = sparkleEnabled ? "✧" : "·";
+    showToast(sparkleEnabled ? "Sparkles are back! ✨" : "Sparkles are resting.");
+  });
+
+  let lastSparkleTime = 0;
+
+  document.addEventListener("pointermove", event => {
+    if (!sparkleEnabled || event.pointerType === "touch") return;
+    const now = performance.now();
+    if (now - lastSparkleTime < 65) return;
+    lastSparkleTime = now;
+
+    const sparkle = document.createElement("span");
+    sparkle.className = "sparkle";
+    sparkle.textContent = Math.random() > .5 ? "✦" : "✧";
+    sparkle.style.left = event.clientX + "px";
+    sparkle.style.top = event.clientY + "px";
+    sparkle.style.setProperty("--dx", (Math.random() * 36 - 18) + "px");
+    sparkle.style.setProperty("--dy", (-15 - Math.random() * 35) + "px");
+    sparkle.style.fontSize = (10 + Math.random() * 12) + "px";
+    document.body.appendChild(sparkle);
+    sparkle.addEventListener("animationend", () => sparkle.remove(), { once: true });
+  });
+
+  // -----------------------------
+  // Hidden Easter egg: click the logo star five times
+  // -----------------------------
+  const logoStar = $(".brand-icon");
+  let secretTimer;
+
+  logoStar.style.cursor = "pointer";
+  logoStar.setAttribute("role", "button");
+  logoStar.setAttribute("tabindex", "0");
+  logoStar.setAttribute("aria-label", "A secret for curious dreamers");
+
+  function activateSecret() {
+    secretClicks++;
+    clearTimeout(secretTimer);
+    secretTimer = setTimeout(() => { secretClicks = 0; }, 2200);
+
+    if (secretClicks >= 5) {
+      secretClicks = 0;
+      showToast("🌟 Secret unlocked! Pip says: you are made of stardust!");
+      launchConfetti();
+      playChime(880);
+    } else {
+      playChime(650);
+    }
+  }
+
+  logoStar.addEventListener("click", activateSecret);
+  logoStar.addEventListener("keydown", event => {
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      activateSecret();
+    }
+  });
+
+  // -----------------------------
+  // Lightweight canvas confetti
+  // -----------------------------
+  const canvas = $("#confetti");
+  const ctx = canvas.getContext("2d");
+  let particles = [];
+  let animationId = null;
+  let confettiEnd = 0;
+
+  function resizeCanvas() {
+    const ratio = Math.min(window.devicePixelRatio || 1, 2);
+    canvas.width = Math.round(window.innerWidth * ratio);
+    canvas.height = Math.round(window.innerHeight * ratio);
+    canvas.style.width = window.innerWidth + "px";
+    canvas.style.height = window.innerHeight + "px";
+    ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
+  }
+
+  window.addEventListener("resize", resizeCanvas);
+  resizeCanvas();
+
+  function launchConfetti() {
+    const colors = ["#ff8fb1", "#ffd77c", "#bf96ff", "#85c9ff", "#fff8f1"];
+    particles = Array.from({ length: 110 }, () => ({
+      x: Math.random() * window.innerWidth,
+      y: -20 - Math.random() * window.innerHeight * .4,
+      vx: Math.random() * 4 - 2,
+      vy: 2 + Math.random() * 4,
+      size: 4 + Math.random() * 7,
+      rotation: Math.random() * 6,
+      spin: Math.random() * .15 - .075,
+      color: colors[Math.floor(Math.random() * colors.length)]
+    }));
+
+    confettiEnd = performance.now() + 2600;
+    if (animationId === null) drawConfetti();
+  }
+
+  function drawConfetti() {
+    ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
+
+    for (const particle of particles) {
+      particle.x += particle.vx;
+      particle.y += particle.vy;
+      particle.rotation += particle.spin;
+      particle.vy += .025;
+
+      ctx.save();
+      ctx.translate(particle.x, particle.y);
+      ctx.rotate(particle.rotation);
+      ctx.fillStyle = particle.color;
+      ctx.fillRect(-particle.size / 2, -particle.size / 2, particle.size, particle.size * .65);
+      ctx.restore();
+    }
+
+    particles = particles.filter(p => p.y < window.innerHeight + 30);
+
+    if (performance.now() < confettiEnd && particles.length > 0) {
+      animationId = requestAnimationFrame(drawConfetti);
+    } else {
+      ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
+      animationId = null;
+      particles = [];
+    }
+  }
+
+  // Gentle entrance: reveal sections as they enter the viewport.
+  // Keep content visible if IntersectionObserver is unavailable.
+  if ("IntersectionObserver" in window && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.animate(
+            [
+              { opacity: .65, transform: "translateY(12px)" },
+              { opacity: 1, transform: "translateY(0)" }
+            ],
+            { duration: 450, easing: "ease-out" }
+          );
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: .08 });
+
+    $$(".light-card, .story-section, .note").forEach(element => observer.observe(element));
+  }
+
+  // Start with a clear, quiet experience: audio is opt-in.
+  updateSoundControls();
+  renderStory();
+})();
+</script>
+</body>
+</html>

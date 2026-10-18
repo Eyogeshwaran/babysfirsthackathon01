@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#fff5e9">
+  <title>Pip's Lullaby Lab ✨</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Fredoka:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --cream: #fff5e9;
+      --berry: #873d64;
+      --pink: #f4b9cf;
+      --brown: #543b43;
+      --purple: #b6a2e5;
+      --gold: #f3ca72;
+      --card: #fffaf4;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "Fredoka", sans-serif;
+      background: var(--cream);
+      color: var(--brown);
+      min-height: 100vh;
+      overflow-x: hidden;
+      transition: background 0.4s, color 0.4s;
+    }
+
+    body.dream-mode {
+      background: #29213e;
+      color: #fff0dc;
+    }
+
+    button, select {
+      font: inherit;
+    }
+
+    button, a, select {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    .navbar {
+      max-width: 1120px;
+      margin: auto;
+      padding: 22px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    .logo {
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: var(--berry);
+    }
+
+    .nav-actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .pill {
+      border: 2px solid #ead6d4;
+      border-radius: 30px;
+      padding: 10px 15px;
+      background: var(--card);
+      color: var(--brown);
+      font-weight: 500;
+      transition: transform 0.2s, background 0.2s;
+    }
+
+    .pill:hover {
+      transform: translateY(-2px);
+    }
+
+    .hero {
+      text-align: center;
+      max-width: 850px;
+      padding: 48px 22px 35px;
+      margin: auto;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      background: #f9dfeb;
+      color: var(--berry);
+      padding: 8px 16px;
+      border-radius: 25px;
+      font-size: 0.9rem;
+      margin-bottom: 20px;
+    }
+
+    h1, h2, h3 {
+      font-family: "DM Serif Display", serif;
+      font-weight: 400;
+    }
+
+    h1 {
+      font-size: clamp(2.6rem, 7vw, 5rem);
+      line-height: 1.08;
+      color: var(--berry);
+      margin-bottom: 18px;
+    }
+
+    .dream-mode h1,
+    .dream-mode .logo {
+      color: #f4c8df;
+    }
+
+    .hero p {
+      max-width: 590px;
+      margin: auto;
+      line-height: 1.8;
+      font-size: 1.05rem;
+    }
+
+    .moon-scene {
+      position: relative;
+      width: 190px;
+      height: 190px;
+      margin: 28px auto 0;
+      border-radius: 50%;
+      background: #f5d6e7;
+      display: grid;
+      place-items: center;
+      box-shadow: 0 0 55px #edc5e4;
+    }
+
+    .moon {
+      font-size: 6rem;
+      animation: float 3s ease-in-out infinite;
+    }
+
+    .star {
+      position: absolute;
+      color: #a17ab4;
+      font-size: 1.7rem;
+      animation: twinkle 1.8s ease-in-out infinite alternate;
+    }
+
+    .star.one { top: 20px; right: 22px; }
+    .star.two { bottom: 26px; left: 15px; animation-delay: 0.5s; }
+    .star.three { top: 60px; left: 18px; animation-delay: 0.8s; }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0) rotate(-4deg); }
+      50% { transform: translateY(-10px) rotate(4deg); }
+    }
+
+    @keyframes twinkle {
+      from { opacity: 0.45; transform: scale(0.8); }
+      to { opacity: 1; transform: scale(1.2); }
+    }
+
+    .music-section {
+      max-width: 1000px;
+      margin: 20px auto 75px;
+      padding: 0 22px;
+    }
+
+    .section-heading {
+      text-align: center;
+      margin-bottom: 25px;
+    }
+
+    .section-heading h2 {
+      color: var(--berry);
+      font-size: clamp(2rem, 5vw, 3rem);
+      margin-bottom: 8px;
+    }
+
+    .dream-mode .section-heading h2 {
+      color: #f4c8df;
+    }
+
+    .melody-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 20px;
+    }
+
+    .melody-card {
+      position: relative;
+      background: var(--card);
+      border: 2px solid #f0dedb;
+      border-radius: 25px;
+      padding: 25px 20px;
+      text-align: center;
+      transition: transform 0.25s, border-color 0.25s;
+      overflow: hidden;
+    }
+
+    .melody-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .melody-card.active {
+      border-color: var(--berry);
+      box-shadow: 0 8px 25px #873d641b;
+    }
+
+    .dream-mode .melody-card,
+    .dream-mode .player {
+      background: #39304e;
+      border-color: #625070;
+      color: #fff0dc;
+    }
+
+    .melody-art {
+      width: 105px;
+      height: 105px;
+      margin: 0 auto 18px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      font-size: 3.5rem;
+    }
+
+    .moon-art { background: #f8e1ee; }
+    .star-art { background: #f9edc9; }
+    .cloud-art { background: #dce9fa; }
+
+    .melody-card h3 {
+      font-size: 1.5rem;
+      margin-bottom: 8px;
+    }
+
+    .melody-card p {
+      font-size: 0.94rem;
+      line-height: 1.6;
+      min-height: 48px;
+      opacity: 0.85;
+      margin-bottom: 18px;
+    }
+
+    .choose-btn {
+      background: var(--berry);
+      color: white;
+      border: 0;
+      padding: 11px 18px;
+      border-radius: 25px;
+      font-weight: 500;
+    }
+
+    .choose-btn:hover {
+      filter: brightness(1.12);
+    }
+
+    .player {
+      max-width: 650px;
+      margin: 35px auto 0;
+      padding: 30px;
+      border-radius: 28px;
+      border: 2px solid #f0dedb;
+      background: var(--card);
+      text-align: center;
+    }
+
+    .player-label {
+      color: var(--berry);
+      letter-spacing: 2px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+
+    .dream-mode .player-label {
+      color: #f4c8df;
+    }
+
+    .player h3 {
+      font-size: 2rem;
+      margin-bottom: 7px;
+    }
+
+    #status {
+      min-height: 25px;
+      margin: 8px 0 15px;
+      font-size: 0.95rem;
+      opacity: 0.85;
+    }
+
+    .notes {
+      height: 70px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 13px;
+      margin: 8px 0;
+    }
+
+    .notes span {
+      display: inline-block;
+      font-size: 1.8rem;
+      color: var(--berry);
+      opacity: 0.4;
+    }
+
+    .notes.playing span {
+      animation: music-bounce 0.65s ease-in-out infinite alternate;
+    }
+
+    .notes.playing span:nth-child(2) { animation-delay: 0.15s; }
+    .notes.playing span:nth-child(3) { animation-delay: 0.3s; }
+    .notes.playing span:nth-child(4) { animation-delay: 0.45s; }
+    .notes.playing span:nth-child(5) { animation-delay: 0.2s; }
+
+    @keyframes music-bounce {
+      from { transform: translateY(9px) rotate(-12deg); opacity: 0.45; }
+      to { transform: translateY(-12px) rotate(12deg); opacity: 1; }
+    }
+
+    .progress-track {
+      width: 100%;
+      height: 10px;
+      border-radius: 20px;
+      background: #eadce5;
+      overflow: hidden;
+      margin: 18px 0 10px;
+    }
+
+    .progress-fill {
+      width: 0;
+      height: 100%;
+      background: linear-gradient(90deg, #d48db5, #a99be6);
+      border-radius: inherit;
+      transition: width 0.12s linear;
+    }
+
+    .time-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.83rem;
+      opacity: 0.8;
+    }
+
+    .controls {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 22px;
+    }
+
+    .control-btn {
+      border: 0;
+      border-radius: 30px;
+      padding: 13px 23px;
+      background: var(--berry);
+      color: white;
+      font-weight: 600;
+      min-width: 105px;
+    }
+
+    .control-btn.secondary {
+      background: #f4d9e6;
+      color: #713651;
+    }
+
+    .control-btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .control-btn:focus-visible,
+    .pill:focus-visible,
+    .choose-btn:focus-visible {
+      outline: 3px solid #b6a2e5;
+      outline-offset: 4px;
+    }
+
+    .tip {
+      margin-top: 20px;
+      font-size: 0.88rem;
+      opacity: 0.8;
+      line-height: 1.6;
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px 20px;
+      border-top: 1px dashed #d9becd;
+      line-height: 1.9;
+    }
+
+    footer a {
+      color: var(--berry);
+      font-weight: 600;
+    }
+
+    .dream-mode footer a {
+      color: #f4c8df;
+    }
+
+    @media (max-width: 760px) {
+      .melody-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .melody-card {
+        max-width: 440px;
+        width: 100%;
+        margin: auto;
+      }
+
+      .navbar {
+        justify-content: center;
+      }
+
+      .hero {
+        padding-top: 30px;
+      }
+
+      .player {
+        padding: 24px 17px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <nav class="navbar" aria-label="Main navigation">
+    <a class="logo" href="index.html">☁️ Pip's Little Dream Studio</a>
+
+    <div class="nav-actions">
+      <a class="pill" href="index.html">← Back Home</a>
+      <button class="pill" id="dreamToggle" type="button"
+        aria-pressed="false">🌙 Dream Mode</button>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <span class="eyebrow">✦ PIP'S MUSIC BOX ✦</span>
+    <h1>A Little Lullaby<br>Just for You</h1>
+    <p>
+      Welcome to Pip's cozy music corner! Choose a tiny melody,
+      get comfortable, and let your imagination drift among the stars.
+    </p>
+
+    <div class="moon-scene" aria-hidden="true">
+      <span class="star one">✦</span>
+      <span class="star two">✧</span>
+      <span class="star three">✦</span>
+      <span class="moon">🌙</span>
+    </div>
+  </header>
+
+  <main>
+    <section class="music-section" aria-labelledby="melodyHeading">
+      <div class="section-heading">
+        <h2>Choose Your Dream 🎵</h2>
+        <p>Three little melodies from Pip's sleepy world.</p>
+      </div>
+
+      <div class="melody-grid">
+        <article class="melody-card active" data-melody="moonbeam">
+          <div class="melody-art moon-art" aria-hidden="true">🌙</div>
+          <h3>Moonbeam Melody</h3>
+          <p>A gentle tune for floating beneath a sleepy moon.</p>
+          <button class="choose-btn" type="button"
+            data-select="moonbeam">Choose Melody</button>
+        </article>
+
+        <article class="melody-card" data-melody="starry">
+          <div class="melody-art star-art" aria-hidden="true">⭐</div>
+          <h3>Starry Night</h3>
+          <p>A twinkly little tune for counting imaginary stars.</p>
+          <button class="choose-btn" type="button"
+            data-select="starry">Choose Melody</button>
+        </article>
+
+        <article class="melody-card" data-melody="cloud">
+          <div class="melody-art cloud-art" aria-hidden="true">☁️</div>
+          <h3>Cloud Nine</h3>
+          <p>A soft, dreamy tune for drifting through fluffy clouds.</p>
+          <button class="choose-btn" type="button"
+            data-select="cloud">Choose Melody</button>
+        </article>
+      </div>
+
+      <section class="player" aria-label="Lullaby music player">
+        <p class="player-label">PIP'S LITTLE MUSIC BOX ✦</p>
+        <h3 id="currentTitle">🌙 Moonbeam Melody</h3>
+        <p id="status" aria-live="polite">Your melody is ready. Press Play!</p>
+
+        <div class="notes" id="musicNotes" aria-hidden="true">
+          <span>♪</span>
+          <span>♫</span>
+          <span>♪</span>
+          <span>♫</span>
+          <span>♪</span>
+        </div>
+
+        <div class="progress-track"
+          id="progressTrack"
+          role="progressbar"
+          aria-label="Melody progress"
+          aria-valuemin="0"
+          aria-valuemax="100"
+          aria-valuenow="0">
+          <div class="progress-fill" id="progressFill"></div>
+        </div>
+
+        <div class="time-row">
+          <span id="elapsed">0:00</span>
+          <span id="duration">0:00</span>
+        </div>
+
+        <div class="controls">
+          <button class="control-btn" id="playBtn" type="button">
+            ▶️ Play
+          </button>
+          <button class="control-btn secondary" id="pauseBtn"
+            type="button" disabled>
+            ⏸️ Pause
+          </button>
+          <button class="control-btn secondary" id="stopBtn"
+            type="button">
+            ■ Stop
+          </button>
+        </div>
+
+        <p class="tip">
+          ✨ Headphones recommended. Sound begins only when you press Play.
+          Pause whenever you like.
+        </p>
+      </section>
+    </section>
+  </main>
+
+  <footer>
+    <p>Made with sleepy stars and a little bit of magic ✨</p>
+    <p>© Pip's Little Dream Studio</p>
+    <a href="index.html">← Return to Pip's Studio</a>
+  </footer>
+
+  <script>
+    (() => {
+      "use strict";
+
+      const melodies = {
+        moonbeam: {
+          title: "🌙 Moonbeam Melody",
+          notes: [
+            523.25, 659.25, 783.99, 659.25,
+            587.33, 698.46, 783.99, 698.46,
+            659.25, 587.33, 523.25, 392.00,
+            440.00, 523.25, 587.33, 523.25
+          ]
+        },
+
+        starry: {
+          title: "⭐ Starry Night",
+          notes: [
+            659.25, 783.99, 880.00, 783.99,
+            659.25, 587.33, 659.25, 783.99,
+            1046.50, 880.00, 783.99, 659.25,
+            587.33, 523.25, 587.33, 523.25
+          ]
+        },
+
+        cloud: {
+          title: "☁️ Cloud Nine",
+          notes: [
+            392.00, 493.88, 587.33, 493.88,
+            440.00, 523.25, 659.25, 587.33,
+            523.25, 493.88, 440.00, 392.00,
+            349.23, 392.00, 440.00, 392.00
+          ]
+        }
+      };
+
+      const noteLength = 0.42;
+      const gapLength = 0.045;
+
+      let selectedMelody = "moonbeam";
+      let audioContext = null;
+      let masterGain = null;
+      let startTime = 0;
+      let totalDuration = 0;
+      let animationFrame = null;
+      let isPlaying = false;
+      let isPaused = false;
+
+      const playBtn = document.getElementById("playBtn");
+      const pauseBtn = document.getElementById("pauseBtn");
+      const stopBtn = document.getElementById("stopBtn");
+      const status = document.getElementById("status");
+      const title = document.getElementById("currentTitle");
+      const elapsed = document.getElementById("elapsed");
+      const duration = document.getElementById("duration");
+      const progressFill = document.getElementById("progressFill");
+      const progressTrack = document.getElementById("progressTrack");
+      const musicNotes = document.getElementById("musicNotes");
+
+      function formatTime(seconds) {
+        const safeSeconds = Math.floor(Math.max(0, seconds));
+        const minutes = Math.floor(safeSeconds / 60);
+        const remaining = safeSeconds % 60;
+        return minutes + ":" + String(remaining).padStart(2, "0");
+      }
+
+      function melodyDuration() {
+        return melodies[selectedMelody].notes.length *
+          (noteLength + gapLength);
+      }
+
+      function updateTimeDisplay(current = 0) {
+        elapsed.textContent = formatTime(current);
+        duration.textContent = formatTime(totalDuration);
+        const percent = totalDuration
+          ? Math.min(100, (current / totalDuration) * 100)
+          : 0;
+
+        progressFill.style.width = percent + "%";
+        progressTrack.setAttribute("aria-valuenow", String(Math.round(percent)));
+      }
+
+      function updateSelection() {
+        document.querySelectorAll(".melody-card").forEach(card => {
+          const selected = card.dataset.melody === selectedMelody;
+          card.classList.toggle("active", selected);
+
+          const button = card.querySelector("[data-select]");
+          button.textContent = selected ? "✓ Selected" : "Choose Melody";
+        });
+
+        title.textContent = melodies[selectedMelody].title;
+        totalDuration = melodyDuration();
+        updateTimeDisplay(0);
+      }
+
+      function setControls() {
+        playBtn.disabled = isPlaying && !isPaused;
+        pauseBtn.disabled = !isPlaying || isPaused;
+      }
+
+      function stopAnimation() {
+        if (animationFrame !== null) {
+          cancelAnimationFrame(animationFrame);
+          animationFrame = null;
+        }
+      }
+
+      function animateProgress() {
+        if (!audioContext || !isPlaying || isPaused) return;
+
+        const current = Math.min(
+          totalDuration,
+          audioContext.currentTime - startTime
+        );
+
+        updateTimeDisplay(current);
+
+        if (current >= totalDuration) {
+          finishMelody();
+          return;
+        }
+
+        animationFrame = requestAnimationFrame(animateProgress);
+      }
+
+      function finishMelody() {
+        stopAnimation();
+        isPlaying = false;
+        isPaused = false;
+        musicNotes.classList.remove("playing");
+        status.textContent = "✨ Beautiful! Your melody has finished.";
+        updateTimeDisplay(totalDuration);
+        setControls();
+
+        if (audioContext) {
+          const finishedContext = audioContext;
+          audioContext = null;
+          masterGain = null;
+          finishedContext.close().catch(() => {});
+        }
+      }
+
+      function createMelody(context, gainNode) {
+        const frequencies = melodies[selectedMelody].notes;
+        let noteStart = context.currentTime + 0.08;
+
+        frequencies.forEach((frequency, index) => {
+          const oscillator = context.createOscillator();
+          const noteGain = context.createGain();
+
+          oscillator.type = "sine";
+          oscillator.frequency.setValueAtTime(frequency, noteStart);
+
+          const volume = index % 4 === 0 ? 0.12 : 0.085;
+          const noteEnd = noteStart + noteLength;
+
+          noteGain.gain.setValueAtTime(0.0001, noteStart);
+          noteGain.gain.linearRampToValueAtTime(
+            volume, noteStart + 0.045
+          );
+          noteGain.gain.setValueAtTime(
+            volume, noteEnd - 0.08
+          );
+          noteGain.gain.exponentialRampToValueAtTime(
+            0.0001, noteEnd
+          );
+
+          oscillator.connect(noteGain);
+          noteGain.connect(gainNode);
+
+          oscillator.start(noteStart);
+          oscillator.stop(noteEnd + 0.02);
+
+          noteStart += noteLength + gapLength;
+        });
+      }
+
+      async function startMelody() {
+        try {
+          if (isPlaying && !isPaused) return;
+
+          if (isPaused && audioContext) {
+            await audioContext.resume();
+            startTime = audioContext.currentTime -
+              parseFloat(progressFill.style.width || "0") / 100 *
+              totalDuration;
+            isPaused = false;
+            isPlaying = true;
+            musicNotes.classList.add("playing");
+            status.textContent = "🎵 Your melody is playing...";
+            setControls();
+            animateProgress();
+            return;
+          }
+
+          if (audioContext) {
+            await audioContext.close().catch(() => {});
+          }
+
+          stopAnimation();
+          audioContext = new (
+            window.AudioContext || window.webkitAudioContext
+          )();
+
+          await audioContext.resume();
+
+          masterGain = audioContext.createGain();
+          masterGain.gain.value = 0.65;
+          masterGain.connect(audioContext.destination);
+
+          totalDuration = melodyDuration();
+          startTime = audioContext.currentTime + 0.08;
+          createMelody(audioContext, masterGain);
+
+          isPlaying = true;
+          isPaused = false;
+          musicNotes.classList.add("playing");
+          status.textContent = "🎵 Your melody is playing...";
+          setControls();
+          animateProgress();
+        } catch (error) {
+          status.textContent =
+            "Your browser couldn't start the music. Please try Play again.";
+          isPlaying = false;
+          isPaused = false;
+          musicNotes.classList.remove("playing");
+          setControls();
+        }
+      }
+
+      async function pauseMelody() {
+        if (!audioContext || !isPlaying || isPaused) return;
+
+        try {
+          await audioContext.suspend();
+          isPaused = true;
+          isPlaying = true;
+          stopAnimation();
+          musicNotes.classList.remove("playing");
+          status.textContent = "⏸️ Melody paused. Resume whenever you're ready.";
+          setControls();
+        } catch (error) {
+          status.textContent = "Couldn't pause the melody. Try again.";
+        }
+      }
+
+      async function stopMelody(message = "Melody stopped. Choose a dream.") {
+        stopAnimation();
+
+        const oldContext = audioContext;
+        audioContext = null;
+        masterGain = null;
+        isPlaying = false;
+        isPaused = false;
+
+        if (oldContext) {
+          await oldContext.close().catch(() => {});
+        }
+
+        musicNotes.classList.remove("playing");
+        status.textContent = message;
+        updateTimeDisplay(0);
+        setControls();
+      }
+
+      document.querySelectorAll("[data-select]").forEach(button => {
+        button.addEventListener("click", async () => {
+          const newMelody = button.dataset.select;
+
+          if (newMelody === selectedMelody) return;
+
+          await stopMelody("Melody changed. Press Play when you're ready.");
+          selectedMelody = newMelody;
+          updateSelection();
+        });
+      });
+
+      playBtn.addEventListener("click", startMelody);
+      pauseBtn.addEventListener("click", pauseMelody);
+      stopBtn.addEventListener("click", () => stopMelody());
+
+      document.getElementById("dreamToggle").addEventListener("click", event => {
+        const enabled = document.body.classList.toggle("dream-mode");
+        event.currentTarget.setAttribute("aria-pressed", String(enabled));
+        event.currentTarget.textContent = enabled
+          ? "☀️ Day Mode"
+          : "🌙 Dream Mode";
+      });
+
+      updateSelection();
+      setControls();
+    })();
+  </script>
+</body>
+</html>
